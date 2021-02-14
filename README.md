@@ -4,6 +4,11 @@ This project was inspired out of the need for a drag and drop form builder. Ther
 
 This project isn't ready for production yet, still has a lot of work. But if you'd like to contribute, please do!
 
+# To get started
+- First, install the package with the following command `npm install @jringeisen/vue-formbuilder`
+- Then import the package `import FormBuilder from '@jringeisen/vue-formbuilder'`
+- Then make sure to add `Vue.use(FormBuilder)` so that you can use the component globally.
+
 # ToDo
 - [X] Convert to a package
 - [ ] Add more field options
