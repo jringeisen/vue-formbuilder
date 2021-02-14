@@ -9,7 +9,7 @@ This project isn't ready for production yet, still has a lot of work. But if you
 - Then import the package `import FormBuilder from '@jringeisen/vue-formbuilder'`
 - Then make sure to add `Vue.use(FormBuilder)` so that you can use the component globally.
 
-## If you haven't already done so, you will need to import <a href="https://tailwindcss.com/docs/guides/vue-3-vite">tailwindcss<a> into your application for the styling to work correctly.
+## If you don't have tailwind installed you can import the package styling by using `import '@jringeisen/vue-formbuilder/dist/jringeisen.css'` or you can import tailwindcss.
 
 # ToDo
 - [X] Convert to a package
