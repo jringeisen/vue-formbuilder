@@ -1,8 +1,7 @@
 <template>
-    <div class="max-w-4xl mx-auto mt-20">
-        <h1 class="pb-6 text-2xl font-semibold text-center text-gray-800">Vue FormBuilder</h1>
-        <div class="flex mt-10 mb-20">
-            <div class="w-2/3 h-auto mr-3 bg-white rounded-lg shadow-lg">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex">
+            <div class="w-2/3 h-auto mr-3">
                 <h4 class="mt-5 text-center text-muted" v-if="!form.length">CLICK A FIELD TO ADD IT HERE</h4>
                 <form>
                     <div @mouseover="displayOptions = index" @mouseleave="displayOptions = ''" class='px-3 py-2 hover:bg-gray-200' v-for="(field, index) in form" :key="index">
@@ -19,23 +18,14 @@
                               </svg>
                             </a>
                         </span>
-                        <template v-if="field.input === 'header'">
-                            <h1 v-if="!field.type || field.type === 'h1'" class="text-2xl font-bold">{{ field.text }}</h1>
-                            <h2 v-if="field.type === 'h2'" class="text-xl font-bold">{{ field.text }}</h2>
-                            <h3 v-if="field.type === 'h3'" class="text-lg font-bold">{{ field.text }}</h3>
-                            <h4 v-if="field.type === 'h4'" class="font-bold text-md">{{ field.text }}</h4>
-                        </template>
-                        <template v-if="field.input === 'p'">
-                            <p :class="field.class">{{ field.textarea }}</p>
-                        </template>
-                        <template v-if="field.input === 'select'">
-                            <select :name="field.name" :class="field.class" :required="field.required">
-                                <option v-for="(option, index) in field.options" :key="index" :value="option.value">{{ option.label }}</option>
-                            </select>
-                        </template>
-                        <template v-if="field.input === 'input'">
-                            <input :type="field.type" :name="field.name" :class="field.class" :placeholder="field.placeholder" :required="field.required" :autocomplete="field.autocomplete">
-                        </template>
+                        <header-field v-if="field.input === 'header'" :field="field" />
+
+                        <paragraph-field v-if="field.input === 'p'" :field="field" />
+
+                        <select-field v-if="field.input === 'select'" :field="field" />
+                        
+                        <input-field v-if="field.input === 'input'" :field="field" />
+                            
                         <template v-if="field.input === 'textarea'">
                             <textarea :name="field.name" :rows="field.rows" :class="field.class" :placeholder="field.placeholder" :required="field.required"></textarea>
                         </template>
@@ -110,59 +100,49 @@
                 </form>
             </div>
             <div class="flex flex-col w-1/3">
-                <ul class="overflow-hidden rounded-lg shadow">
-                    <li class="flex items-center px-2 py-2 bg-white shadow cursor-pointer hover:bg-gray-200" @click="headerField">
-                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <i class="w-1/6 text-center fas fa-heading"></i>
-                        <p class="w-full">Header Field</p>
-                    </li>
-                    <li class="flex items-center px-2 py-2 bg-white shadow cursor-pointer hover:bg-gray-200" @click="paragraphField">
-                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <i class="w-1/6 text-center fas fa-paragraph"></i>
-                        <p class="w-full">Paragraph Field</p>
-                    </li>
-                    <li class="flex items-center px-2 py-2 bg-white shadow cursor-pointer hover:bg-gray-200" @click="textField">
-                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <i class="w-1/6 text-center fas fa-i-cursor"></i>
-                        <p class="w-full">Text Field</p>
-                    </li>
-                    <li class="flex items-center px-2 py-2 bg-white shadow cursor-pointer hover:bg-gray-200" @click="textareaField">
-                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <i class="w-1/6 text-center fas fa-align-center"></i>
-                        <p class="w-full">Textarea Field</p>
-                    </li>
-                    <li class="flex items-center px-2 py-2 bg-white shadow cursor-pointer hover:bg-gray-200" @click="selectField">
-                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <i class="w-1/6 text-center fas fa-list-ul"></i>
-                        <p class="w-full">Select</p>
-                    </li>
-                    <li class="flex items-center px-2 py-2 bg-white shadow cursor-pointer hover:bg-gray-200" @click="submitButton">
-                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        <i class="w-1/6 text-center far fa-hand-pointer"></i>
-                        <p class="w-full">Button</p>
-                    </li>
-                </ul>
+                <div class="grid grid-cols-2 gap-0 rounded-lg overflow-hidden border border-gray-200">
+                    <div class="flex items-center px-4 py-6 bg-white border border-gray-100 cursor-pointer hover:bg-gray-200" @click="headerField">
+                        <p class="w-full text-center">Header</p>
+                    </div>
+                    
+                    <div class="flex items-center px-4 py-6 bg-white border border-gray-100 cursor-pointer hover:bg-gray-200" @click="paragraphField">
+                        <p class="w-full text-center">Paragraph</p>
+                    </div>
+
+                    <div class="flex items-center px-4 py-6 bg-white border border-gray-100 cursor-pointer hover:bg-gray-200" @click="textField">
+                        <p class="w-full text-center">Short Answer</p>
+                    </div>
+
+                    <div class="flex items-center px-4 py-6 bg-white border border-gray-100 cursor-pointer hover:bg-gray-200" @click="textareaField">
+                        <p class="w-full text-center">Long Answer</p>
+                    </div>
+
+                    <div class="flex items-center px-4 py-6 bg-white border border-gray-100 cursor-pointer hover:bg-gray-200" @click="selectField">
+                        <p class="w-full text-center">Select</p>
+                    </div>
+
+                    <div class="flex items-center px-4 py-6 bg-white border border-gray-100 cursor-pointer hover:bg-gray-200" @click="submitButton">
+                        <p class="w-full text-center">Button</p>
+                    </div>
+                </div>
                 <button class="px-2 py-2 mt-2 bg-blue-200 rounded-lg shadow focus:outline-none hover:bg-blue-300" @click.prevent="clearForm"><i class="far fa-times-circle"></i> Clear Form</button>
             </div>
         </div>
-        <pre class="text-xs">{{ JSON.stringify(form, null, '\t') }}</pre>
     </div>
 </template>
 
 <script>
+import HeaderField from './Fields/Header'
+import ParagraphField from './Fields/Paragraph.vue'
+import SelectField from './Fields/Select.vue'
+import InputField from './Fields/Input.vue'
     export default {
+        components: { 
+            HeaderField,
+            ParagraphField,
+            SelectField,
+            InputField
+        },
         data () {
             return {
                 form: [],
@@ -170,6 +150,11 @@
                 displayOptions: ''
             }
         },
+
+        updated () {
+            this.$emit('form', this.form)
+        },
+
         methods: {
             textField () {
                 this.form.push({

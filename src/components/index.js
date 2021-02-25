@@ -1,9 +1,11 @@
 import Vue from "vue";
 import FormBuilder from "./FormBuilder.vue";
+import FormRender from "./FormRender.vue";
 import '../index.css'
 
 const Components = {
-    FormBuilder
+    FormBuilder,
+    FormRender
 }
 
 Object.keys(Components).forEach(name => {
