@@ -4,6 +4,29 @@ import { resolve } from 'path'
 
 export default defineConfig(async ({ mode }) => {
   const isLib = mode === 'lib'
+  const isEmbed = mode === 'embed'
+  
+  if (isEmbed) {
+    return {
+      plugins: [vue()],
+      build: {
+        outDir: 'dist/embed',
+        lib: {
+          entry: resolve(process.cwd(), 'src/embed/embed-entry.js'),
+          name: 'VueFormEmbed',
+          fileName: (format) => `embed.${format === 'es' ? 'js' : format === 'umd' ? 'umd.cjs' : format}`,
+          formats: ['es', 'umd']
+        },
+        rollupOptions: {
+          output: {
+            globals: {
+              vue: 'Vue'
+            }
+          }
+        }
+      }
+    }
+  }
   
   return {
     plugins: [vue()],

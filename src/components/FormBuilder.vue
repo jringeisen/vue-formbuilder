@@ -125,6 +125,160 @@
             </span>
             <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Button</span>
           </button>
+
+          <button
+              @click="checkboxField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Checkbox</span>
+          </button>
+
+          <button
+              @click="checkboxGroupField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Checkboxes</span>
+          </button>
+
+          <button
+              @click="radioGroupField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Radio</span>
+          </button>
+
+          <button
+              @click="datePickerField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Date</span>
+          </button>
+
+          <button
+              @click="timePickerField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Time</span>
+          </button>
+
+          <button
+              @click="numberInputField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Number</span>
+          </button>
+
+          <button
+              @click="phoneInputField"
+              class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all duration-200 group"
+          >
+            <span
+                class="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mb-2 transition-colors"
+            >
+              <svg
+                  class="w-4 h-4 text-slate-600 group-hover:text-blue-600" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+            </span>
+            <span class="text-xs font-medium text-slate-700 group-hover:text-blue-700">Phone</span>
+          </button>
+        </div>
+
+        <!-- Saved Forms Manager Section -->
+        <div class="mb-4">
+          <SavedFormsManager 
+            :current-form="form" 
+            @load-form="loadSavedForm"
+            @form-saved="onFormSaved"
+          />
+        </div>
+
+        <!-- Embed Generator Section -->
+        <div class="mb-4">
+          <EmbedGenerator :form-data="form" />
         </div>
 
         <button
@@ -171,7 +325,7 @@
           <div class="flex-1">
             <div class="flex items-center gap-2 mb-2">
               <label class="text-sm font-medium text-slate-700">{{
-                  field.label || field.text || 'Untitled Field'
+                  field.label || field.text || getFieldDisplayName(field)
                 }}</label>
               <span v-if="field.required" class="text-red-500 text-sm">*</span>
               <span class="text-xs px-2 py-1 bg-slate-100 text-slate-600 rounded-full">{{
@@ -185,17 +339,24 @@
               <ParagraphField v-if="field.element === 'p'" :field="field" />
               <SelectField v-if="field.element === 'select'" :field="field" />
               <InputField v-if="field.element === 'input'" :field="field" />
+              <Checkbox v-if="field.element === 'checkbox'" :field="field" />
+              <CheckboxGroup v-if="field.element === 'checkbox-group'" :field="field" />
+              <RadioGroup v-if="field.element === 'radio-group'" :field="field" />
+              <DatePicker v-if="field.element === 'date-picker'" :field="field" />
+              <TimePicker v-if="field.element === 'time-picker'" :field="field" />
+              <NumberInput v-if="field.element === 'number-input'" :field="field" />
+              <PhoneInput v-if="field.element === 'phone-input'" :field="field" />
 
               <template v-if="field.element === 'textarea'">
                                     <textarea
                                         :name="field.name" :rows="field.rows" :class="field.class"
-                                        :placeholder="field.placeholder" :required="field.required"
+                                        :placeholder="field.placeholder || 'Enter text here...'" :required="field.required"
                                         class="w-full"
                                     ></textarea>
               </template>
               <template v-if="field.element === 'button'">
                 <button :type="field.name" :class="field.class" class="inline-flex">{{
-                    field.text
+                    field.text || 'Button Text'
                   }}
                 </button>
               </template>
@@ -370,6 +531,15 @@ import HeaderField from './Fields/Header.vue'
 import ParagraphField from './Fields/Paragraph.vue'
 import SelectField from './Fields/Select.vue'
 import InputField from './Fields/Input.vue'
+import Checkbox from './Fields/Checkbox.vue'
+import CheckboxGroup from './Fields/CheckboxGroup.vue'
+import RadioGroup from './Fields/RadioGroup.vue'
+import DatePicker from './Fields/DatePicker.vue'
+import TimePicker from './Fields/TimePicker.vue'
+import NumberInput from './Fields/NumberInput.vue'
+import PhoneInput from './Fields/PhoneInput.vue'
+import EmbedGenerator from './EmbedGenerator.vue'
+import SavedFormsManager from './SavedFormsManager.vue'
 
 // Define props for v-model support
 const props = defineProps({
@@ -487,5 +657,159 @@ const clearField = (field, index) => {
 
 const clearForm = () => {
   form.value = []
+}
+
+// New field type methods
+const checkboxField = () => {
+  form.value.push({
+    element: 'checkbox',
+    label: 'Checkbox Field',
+    checkboxLabel: 'Check this option',
+    name: 'checkbox-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    checked: false
+  })
+}
+
+const checkboxGroupField = () => {
+  form.value.push({
+    element: 'checkbox-group',
+    label: 'Checkbox Group',
+    name: 'checkbox-group-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    options: [
+      { label: 'Option 1', value: 'option-1' },
+      { label: 'Option 2', value: 'option-2' },
+      { label: 'Option 3', value: 'option-3' }
+    ]
+  })
+}
+
+const radioGroupField = () => {
+  form.value.push({
+    element: 'radio-group',
+    label: 'Radio Group',
+    name: 'radio-group-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    options: [
+      { label: 'Option 1', value: 'option-1' },
+      { label: 'Option 2', value: 'option-2' },
+      { label: 'Option 3', value: 'option-3' }
+    ]
+  })
+}
+
+const datePickerField = () => {
+  form.value.push({
+    element: 'date-picker',
+    label: 'Date',
+    placeholder: 'Select date',
+    dateType: 'date',
+    dateTypes: ['date', 'datetime-local', 'month', 'week'],
+    name: 'date-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    minDate: '',
+    maxDate: '',
+    autocomplete: 'off'
+  })
+}
+
+const timePickerField = () => {
+  form.value.push({
+    element: 'time-picker',
+    label: 'Time',
+    placeholder: 'Select time',
+    name: 'time-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    minTime: '',
+    maxTime: '',
+    step: '300',
+    autocomplete: 'off'
+  })
+}
+
+const numberInputField = () => {
+  form.value.push({
+    element: 'number-input',
+    label: 'Number',
+    placeholder: 'Enter number',
+    name: 'number-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    min: '',
+    max: '',
+    step: '1',
+    prefix: '',
+    suffix: '',
+    autocomplete: 'off'
+  })
+}
+
+const phoneInputField = () => {
+  form.value.push({
+    element: 'phone-input',
+    label: 'Phone Number',
+    placeholder: '(555) 123-4567',
+    name: 'phone-' + Math.floor(100000 + Math.random() * 900000),
+    class: '',
+    requiredField: 'required',
+    required: false,
+    showCountryCode: true,
+    pattern: '',
+    autocomplete: 'tel'
+  })
+}
+
+const getFieldDisplayName = (field) => {
+  switch (field.element) {
+    case 'header':
+      return 'Header Field'
+    case 'p':
+      return 'Paragraph Field'
+    case 'input':
+      return 'Input Field'
+    case 'textarea':
+      return 'Textarea Field'
+    case 'select':
+      return 'Select Field'
+    case 'button':
+      return 'Button Field'
+    case 'checkbox':
+      return 'Checkbox Field'
+    case 'checkbox-group':
+      return 'Checkbox Group'
+    case 'radio-group':
+      return 'Radio Group'
+    case 'date-picker':
+      return 'Date Field'
+    case 'time-picker':
+      return 'Time Field'
+    case 'number-input':
+      return 'Number Field'
+    case 'phone-input':
+      return 'Phone Field'
+    default:
+      return 'Untitled Field'
+  }
+}
+
+const loadSavedForm = (formData) => {
+  form.value = [...formData]
+}
+
+const onFormSaved = (formId) => {
+  // Optional: Could emit event to parent or show notification
+  console.log('Form saved with ID:', formId)
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <p :class="props.field.class">{{ props.field.textarea }}</p>
+    <p :class="props.field.class">{{ props.field.textarea || 'Paragraph text...' }}</p>
 </template>
 
 <script setup>

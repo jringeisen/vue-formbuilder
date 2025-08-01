@@ -8,6 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "build-lib": "vite build --mode lib",
+    "build-embed": "vite build --mode embed",
+    "build-all": "npm run build && npm run build-lib && npm run build-embed",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts --fix"
   },
@@ -28,7 +30,9 @@
     "*.js"
   ],
   "dependencies": {
-    "vue": "^3.4.0"
+    "nanoid": "^5.1.5",
+    "vue": "^3.4.0",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.0",
