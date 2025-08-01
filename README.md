@@ -8,7 +8,7 @@ A modern Vue 3 form builder component using the Composition API and TailwindCSS 
 - **TailwindCSS v4**: Latest Tailwind with Oxide engine for better performance
 - **TypeScript Ready**: Full TypeScript support with proper prop definitions
 - **Vite Build System**: Fast development and optimized production builds
-- **Multiple Field Types**: Headers, paragraphs, inputs, textareas, selects, and buttons
+- **Rich Field Types**: Headers (h1-h4), paragraphs, inputs, textareas, selects, checkboxes, radio groups, date/time pickers, phone inputs, and number inputs
 - **Form Validation**: Built-in required field validation
 - **JSON Export/Import**: Save and restore form configurations
 - **🚀 Embeddable Forms**: Generate code snippets to embed forms on any website
@@ -19,6 +19,39 @@ A modern Vue 3 form builder component using the Composition API and TailwindCSS 
 
 ```bash
 npm install @jringeisen/vue-formbuilder
+```
+
+## 🏗️ Development Setup
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Vue 3.4+
+
+### Quick Start for Development
+
+1. **Clone and install dependencies:**
+```bash
+git clone https://github.com/jringeisen/vue-formbuilder.git
+cd vue-formbuilder
+npm install
+```
+
+2. **Start development server:**
+```bash
+npm run dev
+```
+
+3. **Build the library:**
+```bash
+npm run build-lib    # Build library package
+npm run build-embed  # Build embed functionality
+npm run build-all    # Build everything
+```
+
+4. **Run linting:**
+```bash
+npm run lint
 ```
 
 ## 🚀 Getting Started
@@ -36,7 +69,7 @@ app.use(VueFormBuilder)
 app.mount('#app')
 ```
 
-**Option 2: Component Import**
+**Option 2: Component Import (Recommended)**
 ```javascript
 import { FormBuilder, FormRender } from '@jringeisen/vue-formbuilder'
 import '@jringeisen/vue-formbuilder/style.css'
@@ -49,52 +82,125 @@ export default {
 }
 ```
 
-### Using FormBuilder
+### Component API Reference
+
+#### FormBuilder Component
+Creates a visual form builder interface for designing forms.
+
+**Props:**
+- None required
+
+**Events:**
+- `@form` - Emitted when form configuration changes
+  ```javascript
+  // Event payload structure
+  const formConfig = [
+    {
+      id: 'unique-id',
+      element: 'input', // 'header', 'p', 'input', 'textarea', 'select', etc.
+      type: 'text',     // field-specific attributes
+      label: 'Field Label',
+      required: true,
+      // ... other field properties
+    }
+  ]
+  ```
+
+#### FormRender Component  
+Renders a form from JSON configuration.
+
+**Props:**
+- `formJson` (Array, required) - Array of form field objects to render
+
+### Basic Usage Examples
+
+#### Building Forms with FormBuilder
 
 ```vue
 <template>
-  <form-builder @form="handleFormUpdate" />
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Form Builder -->
+    <div>
+      <h2>Design Your Form</h2>
+      <form-builder @form="handleFormUpdate" />
+    </div>
+    
+    <!-- Live Preview -->
+    <div>
+      <h2>Live Preview</h2>
+      <form-render :form-json="formData" />
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { FormBuilder, FormRender } from '@jringeisen/vue-formbuilder'
 
 const formData = ref([])
 
 const handleFormUpdate = (formConfig) => {
   formData.value = formConfig
-  // Save to database, localStorage, etc.
+  
+  // Optional: Save to localStorage
+  localStorage.setItem('myForm', JSON.stringify(formConfig))
+  
+  // Optional: Save to your backend
+  // await saveFormToDatabase(formConfig)
 }
 </script>
 ```
 
-### Using FormRender
+#### Rendering Saved Forms
 
 ```vue
 <template>
-  <form-render :form-json="savedFormConfig" />
+  <form-render 
+    :form-json="savedFormConfig" 
+    @submit="handleFormSubmission" 
+  />
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { FormRender } from '@jringeisen/vue-formbuilder'
 
-const savedFormConfig = ref([
-  // Your saved form configuration array
-])
+const savedFormConfig = ref([])
+
+onMounted(() => {
+  // Load from localStorage
+  const saved = localStorage.getItem('myForm')
+  if (saved) {
+    savedFormConfig.value = JSON.parse(saved)
+  }
+})
+
+const handleFormSubmission = (formData) => {
+  console.log('Form submitted:', formData)
+  // Handle form submission
+}
 </script>
 ```
 
 ## 🚀 Embeddable Forms
 
-Generate embeddable code snippets to integrate forms into any website:
+Generate embeddable code snippets to integrate forms into any website. Perfect for embedding forms on WordPress, static sites, or any HTML page.
 
 ### Using the Embed Generator
 
 1. **Build your form** using the FormBuilder component
-2. **Click the "Embed" button** in the sidebar
+2. **Click the "Embed" button** in the sidebar  
 3. **Configure your submission endpoint** (where form data will be sent)
 4. **Choose embed type** (iFrame, JavaScript, or Direct HTML)
 5. **Copy the generated code** and paste it into your website
+
+### Testing the Embed Feature
+
+The project includes a demo page at `/public/embed-demo.html` to test embed functionality:
+
+1. Start the dev server: `npm run dev`
+2. Visit: `http://localhost:5173/embed-demo.html` 
+3. Follow the instructions to test different embed types
 
 ### Embed Types
 
@@ -147,7 +253,7 @@ Configure your endpoint to receive POST requests with JSON data:
 }
 ```
 
-## 🎨 Styling
+## 🎨 Styling & Customization
 
 The package includes TailwindCSS v4 styles. You have two options:
 
@@ -156,17 +262,71 @@ The package includes TailwindCSS v4 styles. You have two options:
 import '@jringeisen/vue-formbuilder/style.css'
 ```
 
-2. **Use your own TailwindCSS setup** and import the raw components.
+2. **Use your own TailwindCSS setup** and import the raw components for full customization.
 
-# ToDo
+### Available Field Types
+
+The form builder supports these field types:
+- **Headers**: h1, h2, h3, h4 with customizable text
+- **Paragraph**: Rich text content blocks  
+- **Text Input**: Various input types (text, email, password, etc.)
+- **Number Input**: Numeric inputs with validation
+- **Phone Input**: Phone number formatting
+- **Textarea**: Multi-line text input
+- **Select**: Dropdown menus
+- **Checkbox**: Single checkboxes 
+- **Checkbox Group**: Multiple checkbox options
+- **Radio Group**: Single-select radio buttons
+- **Date Picker**: Date selection
+- **Time Picker**: Time selection
+
+## 🧪 Testing & Development
+
+### Running Tests
+```bash
+npm run lint          # ESLint validation
+npm run dev           # Development server
+npm run build-all     # Build all targets
+```
+
+### Project Structure
+```
+src/
+├── components/       # Core form components
+│   ├── FormBuilder.vue
+│   ├── FormRender.vue  
+│   ├── Fields/       # Individual field components
+│   └── index.js      # Main export file
+├── embed/           # Embed functionality
+├── utils/           # Utility functions
+└── views/           # Demo pages
+```
+
+## 📋 Roadmap
+
 - [X] Convert to a package
 - [X] Add a form render component
 - [X] Add embeddable forms functionality
 - [X] Add custom submission endpoints
-- [ ] Add more field options
-- [ ] Make fields draggable
-- [ ] Add form themes and styling options
-- [ ] Add analytics and submission tracking
+- [X] Multiple field types (checkboxes, radio, date/time, etc.)
+- [ ] Drag-and-drop field reordering
+- [ ] Form themes and styling options
+- [ ] Advanced validation rules
+- [ ] Analytics and submission tracking
+- [ ] Form templates and presets
 
-<img src="public/images/formbuilder.png">
-<img src="public/images/formrender.png">
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/new-feature`
+3. Make your changes and test thoroughly
+4. Run linting: `npm run lint`
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🐛 Issues & Support  
+
+Found a bug or need help? Please [open an issue](https://github.com/jringeisen/vue-formbuilder/issues) on GitHub.

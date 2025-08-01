@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Embed Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8fafc;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-section h2 {
+            margin-top: 0;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            margin: 1rem 0;
+        }
+        
+        .embed-container {
+            border: 2px dashed #cbd5e1;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f1f5f9;
+        }
+        
+        .instructions {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #1e40af;
+        }
+        
+        .step {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vue FormBuilder - Embed Demo</h1>
+    
+    <div class="instructions">
+        <h3>How to test the embed functionality:</h3>
+        <div class="step">1. Visit the main form builder at <a href="/">http://localhost:5173/</a></div>
+        <div class="step">2. Create a form by adding some fields</div>
+        <div class="step">3. Click the "Embed" button in the sidebar</div>
+        <div class="step">4. Enter a submission endpoint URL (you can use a service like httpbin.org for testing)</div>
+        <div class="step">5. Copy the generated embed code</div>
+        <div class="step">6. Paste it into the sections below to test</div>
+    </div>
+
+    <div class="demo-section">
+        <h2>iFrame Embed Example</h2>
+        <p>This is how an iframe embed would look on your website:</p>
+        
+        <div class="code-block">
+&lt;iframe
+  src="http://localhost:5173/embed/[FORM_ID]?endpoint=[ENDPOINT_URL]"
+  width="100%"
+  height="auto"
+  frameborder="0"
+  style="border: none; min-height: 400px;"
+  title="Form"&gt;
+&lt;/iframe&gt;
+        </div>
+        
+        <div class="embed-container">
+            <p><em>Replace the iframe code above with your generated embed code to see the form here.</em></p>
+            <!-- Example iframe will be inserted here -->
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>JavaScript Widget Example</h2>
+        <p>This is how a JavaScript widget embed would look:</p>
+        
+        <div class="code-block">
+&lt;div id="form-[FORM_ID]"&gt;&lt;/div&gt;
+&lt;script&gt;
+  (function() {
+    var iframe = document.createElement('iframe');
+    iframe.src = 'http://localhost:5173/embed/[FORM_ID]?endpoint=[ENDPOINT_URL]';
+    iframe.width = '100%';
+    iframe.height = 'auto';
+    iframe.frameBorder = '0';
+    iframe.style.border = 'none';
+    iframe.style.minHeight = '400px';
+    document.getElementById('form-[FORM_ID]').appendChild(iframe);
+  })();
+&lt;/script&gt;
+        </div>
+        
+        <div class="embed-container">
+            <p><em>Replace the script above with your generated embed code to see the form here.</em></p>
+            <!-- Example widget will be inserted here -->
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Direct HTML Example</h2>
+        <p>This is how a direct HTML embed would look:</p>
+        
+        <div class="code-block">
+&lt;form action="[ENDPOINT_URL]" method="POST" class="embedded-form"&gt;
+  &lt;!-- Form fields will be generated here --&gt;
+&lt;/form&gt;
+
+&lt;style&gt;
+.embedded-form { max-width: 600px; margin: 0 auto; }
+.form-group { margin-bottom: 1rem; }
+/* Additional styles... */
+&lt;/style&gt;
+        </div>
+        
+        <div class="embed-container">
+            <p><em>Replace the HTML above with your generated embed code to see the form here.</em></p>
+            <!-- Example HTML form will be inserted here -->
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Testing Endpoints</h2>
+        <p>You can use these endpoints for testing form submissions:</p>
+        <ul>
+            <li><strong>httpbin.org:</strong> <code>https://httpbin.org/post</code> - Shows you exactly what was submitted</li>
+            <li><strong>Webhook.site:</strong> Visit <a href="https://webhook.site" target="_blank">webhook.site</a> to get a unique URL for testing</li>
+            <li><strong>RequestBin:</strong> Visit <a href="https://requestbin.com" target="_blank">requestbin.com</a> for another testing option</li>
+        </ul>
+    </div>
+
+    <div class="demo-section">
+        <h2>Features Included</h2>
+        <ul>
+            <li>✅ Multiple embed types (iframe, JavaScript, direct HTML)</li>
+            <li>✅ Customizable dimensions and styling</li>
+            <li>✅ User-configurable submission endpoints</li>
+            <li>✅ Form data persistence with unique IDs</li>
+            <li>✅ Responsive design for mobile and desktop</li>
+            <li>✅ Copy-to-clipboard functionality</li>
+            <li>✅ Cross-domain compatibility</li>
+            <li>✅ Success/error handling for form submissions</li>
+        </ul>
+    </div>
+</body>
+</html>
