@@ -3,9 +3,11 @@
     <!-- Left Sidebar - Form Builder -->
     <div class="w-96 bg-white border-r border-slate-200 shadow-sm flex flex-col">
       <!-- Sidebar Header -->
-      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex-shrink-0">
-        <h2 class="text-lg font-semibold text-slate-900">Form Builder</h2>
-        <p class="text-sm text-slate-600 mt-1">Build your form</p>
+      <div class="bg-slate-50 px-6 h-26 flex items-center outline-b outline outline-slate-200 flex-shrink-0">
+          <div>
+              <h2 class="text-lg font-semibold text-slate-900">Form Builder</h2>
+              <p class="text-sm text-slate-600 mt-1">Build your form</p>
+          </div>
       </div>
       
       <!-- Sidebar Content -->
@@ -20,10 +22,10 @@
     <div class="flex-1 flex flex-col">
       <!-- Main Header -->
       <div class="bg-white border-b border-slate-200 shadow-sm flex-shrink-0">
-        <div class="px-8 py-6">
-          <div class="flex items-center justify-between">
+        <div class="px-8">
+          <div class="flex items-center justify-between h-26">
             <div>
-              <h1 class="text-2xl font-bold text-slate-900">Vue FormBuilder</h1>
+              <h2 class="text-2xl font-bold text-slate-900">Vue FormBuilder</h2>
               <p class="text-slate-600 mt-1">Real-time form preview</p>
             </div>
             <div class="flex items-center space-x-2 text-sm text-slate-500">
