@@ -1,11 +1,13 @@
 <template>
-    <input :type="field.type" :name="field.name" :class="field.class" :placeholder="field.placeholder" :required="field.required" :autocomplete="field.autocomplete">
+    <input :type="props.field.type" :name="props.field.name" :class="props.field.class" :placeholder="props.field.placeholder" :required="props.field.required" :autocomplete="props.field.autocomplete">
 </template>
 
-<script>
-export default {
-    props: {
-        field: Object
+<script setup>
+// Define props with proper typing
+const props = defineProps({
+    field: {
+        type: Object,
+        required: true
     }
-}
+})
 </script>

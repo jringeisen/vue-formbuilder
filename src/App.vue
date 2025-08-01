@@ -12,25 +12,14 @@
   </div>
 </template>
 
-<script>
-import FormBuilder from './components/FormBuilder';
-import FormRender from './components/FormRender';
-export default {
-  components: {
-    FormBuilder,
-    FormRender
-  },
+<script setup>
+import { ref } from 'vue'
+import FormBuilder from './components/FormBuilder.vue'
+import FormRender from './components/FormRender.vue'
 
-  data () {
-    return {
-      renderForm: ''
-    }
-  },
+const renderForm = ref('')
 
-  methods: {
-    handleForm (payload) {
-      this.renderForm = payload
-    }
-  }
+const handleForm = (payload) => {
+  renderForm.value = payload
 }
 </script>

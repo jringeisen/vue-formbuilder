@@ -1,11 +1,13 @@
 <template>
-    <p :class="field.class">{{ field.textarea }}</p>
+    <p :class="props.field.class">{{ props.field.textarea }}</p>
 </template>
 
-<script>
-export default {
-    props: {
-        field: Object
+<script setup>
+// Define props with proper typing
+const props = defineProps({
+    field: {
+        type: Object,
+        required: true
     }
-}
+})
 </script>

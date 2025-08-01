@@ -1,8 +1,8 @@
 <template>
     <div>
       <form action="#" method="POST">
-        <div v-if="formJson" class="w-1/2 mx-auto mt-6">
-          <span v-for="(value, index) in formJson" :key="index">
+        <div v-if="props.formJson" class="w-1/2 mx-auto mt-6">
+          <span v-for="(value, index) in props.formJson" :key="index">
             <div v-if="value.input === 'header' && value.type === 'h1'" class="px-3 py-2">
               <h1>{{ value.text }}</h1>
             </div>
@@ -30,8 +30,12 @@
     </div>
 </template>
 
-<script>
-export default {
-  props: ['formJson']
-}
+<script setup>
+// Define props with proper typing
+const props = defineProps({
+  formJson: {
+    type: Array,
+    default: () => []
+  }
+})
 </script>

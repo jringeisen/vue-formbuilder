@@ -1,28 +1,96 @@
-# Vue.js formbuilder using TailwindCss
+# Vue 3 FormBuilder with TailwindCSS v4
 
-This project was inspired out of the need for a drag and drop form builder. There is a jQuery formBuilder but I couldn't find one that was built with Vue so I decided to take on the project.
+A modern Vue 3 form builder component using the Composition API and TailwindCSS v4. Build dynamic forms with drag-and-drop functionality and render them from JSON configuration.
 
-This project isn't ready for production yet, still has a lot of work. But if you'd like to contribute, please do!
+## ✨ Features
 
-# Installation
-- Run `npm install @jringeisen/vue-formbuilder`
+- **Vue 3 + Composition API**: Modern Vue.js with reactive composition functions
+- **TailwindCSS v4**: Latest Tailwind with Oxide engine for better performance
+- **TypeScript Ready**: Full TypeScript support with proper prop definitions
+- **Vite Build System**: Fast development and optimized production builds
+- **Multiple Field Types**: Headers, paragraphs, inputs, textareas, selects, and buttons
+- **Form Validation**: Built-in required field validation
+- **JSON Export/Import**: Save and restore form configurations
 
-# Getting started with the FormBuilder Component
-- Import the formbuilder component in your entry vue file using `import FormBuilder from '@jringeisen/vue-formbuilder'`.
-- Then make sure to add `Vue.use(FormBuilder)`.
+## 📦 Installation
 
-Now you will have access to the `<form-builder />` component, add it to the page you would like to use the form builder on. 
-Each time you add a field a `form` event is triggered. You can do the following `<form-builder @form="yourMethodHere" />` to
-capture the json string which you can save in a database so you can pass it to the render component.
+```bash
+npm install @jringeisen/vue-formbuilder
+```
 
-# Getting started with the FormRender Component
-- Import the formrender component in your entry vue file using `import FormRender from '@jringeisen/vue-formbuilder'`.
-- Then make sure to add `Vue.use(FormRender)`.
+## 🚀 Getting Started
 
-Now you will have access to the `<form-render />` component, add it to the page you would like to render your form on.
-The form render component accepts a `formJson` prop like this `<form-render form-json="formBuilderJsonStringHere">`.
+### Vue 3 Setup
 
-If you don't have tailwind installed you can import the package styling by using `import '@jringeisen/vue-formbuilder/dist/jringeisen.css'` or you can import tailwindcss.
+**Option 1: Global Registration**
+```javascript
+import { createApp } from 'vue'
+import VueFormBuilder from '@jringeisen/vue-formbuilder'
+import '@jringeisen/vue-formbuilder/style.css'
+
+const app = createApp(App)
+app.use(VueFormBuilder)
+app.mount('#app')
+```
+
+**Option 2: Component Import**
+```javascript
+import { FormBuilder, FormRender } from '@jringeisen/vue-formbuilder'
+import '@jringeisen/vue-formbuilder/style.css'
+
+export default {
+  components: {
+    FormBuilder,
+    FormRender
+  }
+}
+```
+
+### Using FormBuilder
+
+```vue
+<template>
+  <form-builder @form="handleFormUpdate" />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const formData = ref([])
+
+const handleFormUpdate = (formConfig) => {
+  formData.value = formConfig
+  // Save to database, localStorage, etc.
+}
+</script>
+```
+
+### Using FormRender
+
+```vue
+<template>
+  <form-render :form-json="savedFormConfig" />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const savedFormConfig = ref([
+  // Your saved form configuration array
+])
+</script>
+```
+
+## 🎨 Styling
+
+The package includes TailwindCSS v4 styles. You have two options:
+
+1. **Import the built CSS** (recommended):
+```javascript
+import '@jringeisen/vue-formbuilder/style.css'
+```
+
+2. **Use your own TailwindCSS setup** and import the raw components.
 
 # ToDo
 - [X] Convert to a package

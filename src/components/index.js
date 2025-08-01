@@ -1,4 +1,3 @@
-import Vue from "vue";
 import FormBuilder from "./FormBuilder.vue";
 import FormRender from "./FormRender.vue";
 import '../index.css'
@@ -8,8 +7,18 @@ const Components = {
     FormRender
 }
 
-Object.keys(Components).forEach(name => {
-    Vue.component(name, Components[name]);
-});
+// Install function for Vue.use()
+const install = (app) => {
+    Object.keys(Components).forEach(name => {
+        app.component(name, Components[name]);
+    });
+}
 
-export default Components;
+// Export individual components
+export { FormBuilder, FormRender }
+
+// Export plugin with install function
+export default {
+    install,
+    ...Components
+}

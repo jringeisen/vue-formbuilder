@@ -131,122 +131,125 @@
     </div>
 </template>
 
-<script>
-import HeaderField from './Fields/Header'
+<script setup>
+import { ref, watch } from 'vue'
+import HeaderField from './Fields/Header.vue'
 import ParagraphField from './Fields/Paragraph.vue'
 import SelectField from './Fields/Select.vue'
 import InputField from './Fields/Input.vue'
-    export default {
-        components: { 
-            HeaderField,
-            ParagraphField,
-            SelectField,
-            InputField
-        },
-        data () {
-            return {
-                form: [],
-                toggleMenuId: '',
-                displayOptions: ''
+
+// Define emits
+const emit = defineEmits(['form'])
+
+// Reactive state
+const form = ref([])
+const toggleMenuId = ref('')
+const displayOptions = ref('')
+
+// Watch form changes and emit updates
+watch(form, (newForm) => {
+    emit('form', newForm)
+}, { deep: true })
+
+// Methods
+const textField = () => {
+    form.value.push({
+        input: 'input',
+        label: 'Label',
+        placeholder: 'Placeholder',
+        types: ['text', 'email', 'tel', 'date', 'number'],
+        type: 'text',
+        name: 'text-' + Math.floor(100000 + Math.random() * 900000),
+        class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
+        requiredField: 'required',
+        required: false,
+        autocomplete: 'off'
+    })
+}
+
+const textareaField = () => {
+    form.value.push({
+        input: 'textarea',
+        label: 'Label',
+        placeholder: 'Placeholder',
+        name: 'textarea-' + Math.floor(100000 + Math.random() * 900000),
+        rows: '5',
+        class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
+        requiredField: 'required',
+        required: false
+    })
+}
+
+const submitButton = () => {
+    form.value.push({
+        input: 'button',
+        types: ['button', 'submit'],
+        type: 'submit',
+        class: 'bg-blue-200 px-4 py-2 rounded shadow mt-2 focus:outline-none hover:bg-blue-300',
+        text: 'Submit'
+    })
+}
+
+const headerField = () => {
+    form.value.push({
+        input: 'header',
+        types: ['h1', 'h2', 'h3', 'h4'],
+        type: 'h1',
+        text: 'Header',
+        class: 'text-gray-900',
+    })
+}
+
+const paragraphField = () => {
+    form.value.push({
+        input: 'p',
+        textarea: 'Paragraph',
+        class: 'text-gray-700',
+    })
+}
+
+const selectField = () => {
+    form.value.push({
+        label: 'Label',
+        input: 'select',
+        class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
+        name: 'text-' + Math.floor(100000 + Math.random() * 900000),
+        requiredField: 'required',
+        required: false,
+        options: [
+            {
+                label: 'Option 1',
+                value: 'option-1'
+            },
+            {
+                label: 'Option 2',
+                value: 'option-2'
+            },
+            {
+                label: 'Option 3',
+                value: 'option-3'
             }
-        },
+        ],
+    })
+}
 
-        updated () {
-            this.$emit('form', this.form)
-        },
-
-        methods: {
-            textField () {
-                this.form.push({
-                    input: 'input',
-                    label: 'Label',
-                    placeholder: 'Placeholder',
-                    types: ['text', 'email', 'tel', 'date', 'number'],
-                    type: 'text',
-                    name: 'text-' + Math.floor(100000 + Math.random() * 900000),
-                    class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
-                    requiredField: 'required',
-                    required: false,
-                    autocomplete: 'off'
-                })
-            },
-            textareaField () {
-                this.form.push({
-                    input: 'textarea',
-                    label: 'Label',
-                    placeholder: 'Placeholder',
-                    name: 'textarea-' + + Math.floor(100000 + Math.random() * 900000),
-                    rows: '5',
-                    class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
-                    requiredField: 'required',
-                    required: false
-                })
-            },
-            submitButton () {
-                this.form.push({
-                    input: 'button',
-                    types: ['button', 'submit'],
-                    type: 'submit',
-                    class: 'bg-blue-200 px-4 py-2 rounded shadow mt-2 focus:outline-none hover:bg-blue-300',
-                    text: 'Submit'
-                })
-            },
-            headerField () {
-                this.form.push({
-                    input: 'header',
-                    types: ['h1', 'h2', 'h3', 'h4'],
-                    type: 'h1',
-                    text: 'Header',
-                    class: 'text-gray-900',
-                })
-            },
-            paragraphField () {
-                this.form.push({
-                    input: 'p',
-                    textarea: 'Paragraph',
-                    class: 'text-gray-700',
-                })
-            },
-            selectField () {
-                this.form.push({
-                    label: 'Label',
-                    input: 'select',
-                    class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
-                    name: 'text-' + Math.floor(100000 + Math.random() * 900000),
-                    requiredField: 'required',
-                    required: false,
-                    options: [
-                        {
-                            label: 'Option 1',
-                            value: 'option-1'
-                        },
-                        {
-                            label: 'Option 2',
-                            value: 'option-2'
-                        },
-                        {
-                            label: 'Option 3',
-                            value: 'option-3'
-                        }
-                    ],
-                })
-            },
-            toggleMenu (index) {
-                if(this.toggleMenuId !== index) {
-                    this.toggleMenuId = index
-                } else {
-                    this.toggleMenuId = ''
-                }
-            },
-            clearField (field, index) {
-                this.form.splice(index, 1);
-            },
-            removeOption (options, id) {
-                options.splice(id, 1)
-            },
-            clearForm () {
-                this.form = []
-            },
-        }
+const toggleMenu = (index) => {
+    if(toggleMenuId.value !== index) {
+        toggleMenuId.value = index
+    } else {
+        toggleMenuId.value = ''
     }
+}
+
+const clearField = (field, index) => {
+    form.value.splice(index, 1)
+}
+
+const removeOption = (options, id) => {
+    options.splice(id, 1)
+}
+
+const clearForm = () => {
+    form.value = []
+}
 </script>
