@@ -18,18 +18,18 @@
                               </svg>
                             </a>
                         </span>
-                        <header-field v-if="field.input === 'header'" :field="field" />
+                        <HeaderField v-if="field.element === 'header'" :field="field" />
 
-                        <paragraph-field v-if="field.input === 'p'" :field="field" />
+                        <ParagraphField v-if="field.element === 'p'" :field="field" />
 
-                        <select-field v-if="field.input === 'select'" :field="field" />
+                        <SelectField v-if="field.element === 'select'" :field="field" />
                         
-                        <input-field v-if="field.input === 'input'" :field="field" />
+                        <InputField v-if="field.element === 'input'" :field="field" />
                             
-                        <template v-if="field.input === 'textarea'">
+                        <template v-if="field.element === 'textarea'">
                             <textarea :name="field.name" :rows="field.rows" :class="field.class" :placeholder="field.placeholder" :required="field.required"></textarea>
                         </template>
-                        <template v-if="field.input === 'button'">
+                        <template v-if="field.element === 'button'">
                             <button :type="field.name" :class="field.class">{{ field.text }}</button>
                         </template>
                         <div v-if="toggleMenuId === index">
@@ -41,11 +41,11 @@
                                 <div class="form-row">
                                     <div class="flex items-center mt-2" v-if="field.label">
                                         <label class="w-1/3">Label</label>
-                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter label here'  v-model='field.label' >
+                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter label here'  v-model='field.label'>
                                     </div>
                                     <div class="flex items-center mt-2" v-if="field.placeholder">
                                         <label class="w-1/3">Placeholder</label>
-                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter placeholder here' v-model='field.placeholder' >
+                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter placeholder here' v-model='field.placeholder'>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -55,10 +55,10 @@
                                             <div class="flex mt-2 items-center" :class="{'mr-4': index === 0}" v-for="(option, index) in field.options" :key="index">
                                                 <input v-model="option.label" placeholder="Label" class="w-1/2 mr-2 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
                                                 <input v-model="option.value" placeholder="Value" class="w-1/2 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
-                                                <div v-if="index !== 0" @click.prevent="field.options.splice(index, 1)" class="text-red-600 ml-2 cursor-pointer">x</div>
+                                                <div v-if="index !== 0" @click.prevent="field.options.splice(index, 1);" class="text-red-600 ml-2 cursor-pointer">x</div>
                                             </div>
                                             <div class="flex justify-end mt-3">
-                                                <button @click.prevent="field.options.push({label:'', value:''})" type="button" class="px-3 py-1 text-xs rounded-lg bg-white border border-gray hover:bg-gray-200 focus:outline-none focus:border-gray-300">Add Option</button>
+                                                <button @click.prevent="field.options.push({label:'', value:''});" type="button" class="px-3 py-1 text-xs rounded-lg bg-white border border-gray hover:bg-gray-200 focus:outline-none focus:border-gray-300">Add Option</button>
                                             </div>
                                         </div>
                                     </div>
@@ -73,24 +73,24 @@
                                     </div>
                                     <div class="flex mt-2" v-if="field.rows">
                                         <label class="w-1/3">Rows</label>
-                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter rows here' v-model='field.rows' >
+                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter rows here' v-model='field.rows'>
                                     </div>
                                     <div class="flex mt-2" v-if="field.text">
                                         <label class="w-1/3">Text</label>
-                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter text here' v-model='field.text' >
+                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter text here' v-model='field.text'>
                                     </div>
                                     <div class="flex mt-2" v-if="field.name">
                                         <label class="w-1/3">Name</label>
-                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter name here' v-model='field.name' >
+                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter name here' v-model='field.name'>
                                     </div>
                                     <div class="flex mt-2" v-if="field.class">
                                         <label class="w-1/3">Class</label>
-                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter class here' v-model='field.class' >
+                                        <input type='text' class='w-2/3 px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300' placeholder='Enter class here' v-model='field.class'>
                                     </div>
                                     <div class="flex items-center mt-2" v-if="field.requiredField">
                                         <label class="w-1/3">Required</label>
                                         <div class="w-2/3 flex justify-left">
-                                            <input type='checkbox' class="rounded-md" v-model='field.required' >
+                                            <input type='checkbox' class="rounded-md" v-model='field.required'>
                                         </div>
                                     </div>
                                 </div>
@@ -132,29 +132,36 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import {ref, watch} from 'vue'
 import HeaderField from './Fields/Header.vue'
 import ParagraphField from './Fields/Paragraph.vue'
 import SelectField from './Fields/Select.vue'
 import InputField from './Fields/Input.vue'
 
-// Define emits
-const emit = defineEmits(['form'])
+// Define props for v-model support
+const props = defineProps({
+  modelValue: {
+    type: Array,
+    default: () => []
+  }
+})
 
-// Reactive state
-const form = ref([])
+const emit = defineEmits(['form', 'update:modelValue'])
+
+// Reactive state - initialize with modelValue if provided
+const form = ref([...props.modelValue])
 const toggleMenuId = ref('')
 const displayOptions = ref('')
 
-// Watch form changes and emit updates
+// Use a deep watcher to emit changes to parent
 watch(form, (newForm) => {
-    emit('form', newForm)
+    emit('update:modelValue', newForm)
 }, { deep: true })
 
-// Methods
+// Methods (keep these as-is)
 const textField = () => {
     form.value.push({
-        input: 'input',
+        element: 'input',
         label: 'Label',
         placeholder: 'Placeholder',
         types: ['text', 'email', 'tel', 'date', 'number'],
@@ -169,7 +176,7 @@ const textField = () => {
 
 const textareaField = () => {
     form.value.push({
-        input: 'textarea',
+        element: 'textarea',
         label: 'Label',
         placeholder: 'Placeholder',
         name: 'textarea-' + Math.floor(100000 + Math.random() * 900000),
@@ -182,7 +189,7 @@ const textareaField = () => {
 
 const submitButton = () => {
     form.value.push({
-        input: 'button',
+        element: 'button',
         types: ['button', 'submit'],
         type: 'submit',
         class: 'bg-blue-200 px-4 py-2 rounded shadow mt-2 focus:outline-none hover:bg-blue-300',
@@ -192,17 +199,17 @@ const submitButton = () => {
 
 const headerField = () => {
     form.value.push({
-        input: 'header',
+        element: 'header',
         types: ['h1', 'h2', 'h3', 'h4'],
         type: 'h1',
-        text: 'Header',
         class: 'text-gray-900',
-    })
+        text: 'Header',
+    });
 }
 
 const paragraphField = () => {
     form.value.push({
-        input: 'p',
+        element: 'p',
         textarea: 'Paragraph',
         class: 'text-gray-700',
     })
@@ -210,8 +217,8 @@ const paragraphField = () => {
 
 const selectField = () => {
     form.value.push({
-        label: 'Label',
-        input: 'select',
+        text: 'Label',
+        element: 'select',
         class: 'py-1 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300',
         name: 'text-' + Math.floor(100000 + Math.random() * 900000),
         requiredField: 'required',
@@ -243,10 +250,6 @@ const toggleMenu = (index) => {
 
 const clearField = (field, index) => {
     form.value.splice(index, 1)
-}
-
-const removeOption = (options, id) => {
-    options.splice(id, 1)
 }
 
 const clearForm = () => {
